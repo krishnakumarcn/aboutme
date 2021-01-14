@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'configure_nonweb.dart' if (dart.library.html) 'configure_web.dart';
+// import 'configure_nonweb.dart' if (dart.library.html) 'configure_web.dart';
 
 void main() {
-  configureApp();
+  // configureApp();
   runApp(MyApp());
 }
 
