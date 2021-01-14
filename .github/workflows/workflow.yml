@@ -32,6 +32,8 @@ jobs:
         git config user.email "flutter-ci@github.com"
         git remote add secure-origin https://${{ secrets.ACCESS_TOKEN }}@github.com/krishnakumarcn/aboutme.git
         git checkout -b gh-pages
+        mkdir aboutme/
+        cd aboutme/
         git add .
         git commit -m "Updated docs"
         git push --force secure-origin gh-pages
