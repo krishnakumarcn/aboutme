@@ -1,6 +1,6 @@
 # aboutme
 
-A new Flutter project.
+Show off!!
 
 ## Getting Started
 
