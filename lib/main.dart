@@ -33,6 +33,9 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
