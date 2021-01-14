@@ -22,7 +22,7 @@ jobs:
       run: flutter packages get
       # working-directory: ./example
     - name: Build Web
-      run: flutter build web
+      run: flutter build web --release
       # working-directory: ./example #test
     - name: Deploy
       run: |
