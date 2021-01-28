@@ -31,7 +31,7 @@ class HomeDesktopView extends StatelessWidget {
                         child: Container(
                           margin: EdgeInsets.only(left: 48),
                           child: Card(
-                            elevation: 10.0,
+                            elevation: 12.0,
                             margin: EdgeInsets.zero,
                             color: Colors.transparent,
                             child: SizedBox(
