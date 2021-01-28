@@ -16,6 +16,7 @@ dependencies:
   stacked_themes: ^0.2.2+2
   lottie: ^0.7.0+1
   get_it:
+  url_strategy: ^0.1.1
 
 dev_dependencies:
   flutter_test:

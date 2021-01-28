@@ -2,12 +2,14 @@ import 'package:aboutme/views/home/home_desktop_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked_themes/stacked_themes.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 import 'app/locator.dart';
 
 Future main() async {
   await ThemeManager.initialise();
   setupLocator();
+  setPathUrlStrategy();
   runApp(MyApp());
 }
 
