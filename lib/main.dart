@@ -9,7 +9,6 @@ import 'app/locator.dart';
 Future main() async {
   await ThemeManager.initialise();
   setupLocator();
-
   setPathUrlStrategy();
   runApp(MyApp());
 }
