@@ -25,12 +25,12 @@ jobs:
     - run: ls
       working-directory: /home/runner/work/aboutme/aboutme/build/web
     
-    - run: cat index.html
-      working-directory: /home/runner/work/aboutme/aboutme/build/web
-    - run: sed -i '/base href/d' index.html #For MacOS : sed -i '' '/base href/d' index.html
-      working-directory: /home/runner/work/aboutme/aboutme/build/web
-    - run: cat index.html
-      working-directory: /home/runner/work/aboutme/aboutme/build/web
+#     - run: cat index.html
+#       working-directory: /home/runner/work/aboutme/aboutme/build/web
+#     - run: sed -i '/base href/d' index.html #For MacOS : sed -i '' '/base href/d' index.html
+#       working-directory: /home/runner/work/aboutme/aboutme/build/web
+#     - run: cat index.html
+#       working-directory: /home/runner/work/aboutme/aboutme/build/web
 
     - run: git init
       working-directory: /home/runner/work/aboutme/aboutme/build/web
