@@ -32,12 +32,12 @@ class _RightPaneState extends State<RightPane> {
         tiles = context.watch<AppBloc>().state.techData;
         break;
       case Section.Personal:
-        // return Container(
-        //   padding: EdgeInsets.only(
-        //     right: 82,
-        //   ),
-        //   child: PersonalPage(),
-        // );
+        return Container(
+          padding: EdgeInsets.only(
+            right: 82,
+          ),
+          child: PersonalPage(),
+        );
 
         break;
       default:
@@ -94,29 +94,35 @@ class PersonalPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text(
-                "Books",
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText1
-                    ?.copyWith(letterSpacing: 1, fontSize: 18),
-              ),
-              SizedBox(height: 12),
-              Text(
-                "A Song of Ice and Fire series by George RR Martin.",
-                style: Theme.of(context).textTheme.bodyText2?.copyWith(),
-              ),
-              Text(
-                "The Ocean at the End of the Lane by Neil Gaiman",
-                style: Theme.of(context).textTheme.bodyText2?.copyWith(),
-              ),
-              Text(
-                "Undelivered Letters by J. Alchem",
-                style: Theme.of(context).textTheme.bodyText2?.copyWith(),
-              ),
+              getBooksSection(context),
             ]),
       ),
     );
+  }
+
+  Widget getBooksSection(context) {
+    return Column(children: [
+      Text(
+        "Books",
+        style: Theme.of(context)
+            .textTheme
+            .bodyText1
+            ?.copyWith(letterSpacing: 1, fontSize: 18),
+      ),
+      SizedBox(height: 12),
+      Text(
+        "A Song of Ice and Fire series by George RR Martin.",
+        style: Theme.of(context).textTheme.bodyText2?.copyWith(),
+      ),
+      Text(
+        "The Ocean at the End of the Lane by Neil Gaiman",
+        style: Theme.of(context).textTheme.bodyText2?.copyWith(),
+      ),
+      Text(
+        "Undelivered Letters by J. Alchem",
+        style: Theme.of(context).textTheme.bodyText2?.copyWith(),
+      ),
+    ]);
   }
 }
 
