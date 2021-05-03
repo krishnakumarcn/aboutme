@@ -13,14 +13,28 @@ dependencies:
     sdk: flutter
   flutter_web_plugins:
     sdk: flutter
-  google_fonts: ^2.0.0
-
 
   cupertino_icons: ^1.0.2
+  equatable: ^2.0.0
+  flutter_bloc: ^7.0.0
+  google_fonts: ^2.0.0
+  url_launcher: ^6.0.3
+
+
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/kk.jpeg
+    - assets/icons/github.png
+    - assets/icons/facebook.png
+    - assets/icons/linkedin.png
+    - assets/icons/stackoverflow.png
+    - assets/icons/gmail.png
+    - assets/icons/instagram.png
