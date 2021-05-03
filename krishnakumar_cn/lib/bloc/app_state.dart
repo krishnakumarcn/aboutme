@@ -2,7 +2,7 @@ part of 'app_bloc.dart';
 
 class AppState extends Equatable {
   const AppState(
-      {this.selectedSection = Section.Tech,
+      {this.selectedSection = Section.WorkExperience,
       this.workExperiences,
       this.educationData,
       this.techData});
