@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:krishnakumar_cn/app/models/detailed_tile.dart';
+import 'package:krishnakumar_cn/app/models/work_experience.dart';
 import 'package:krishnakumar_cn/app/views/right_pane.dart';
 import 'package:krishnakumar_cn/bloc/app_bloc.dart';
 import 'package:krishnakumar_cn/enums/sections.dart';
+import 'package:krishnakumar_cn/helpers/assets.dart';
 import 'package:krishnakumar_cn/helpers/assets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -11,9 +12,32 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   actions: [ProfilePill()],
-      // ),
+      appBar: AppBar(
+        title: Row(
+          children: [
+            SizedBox(width: 48),
+            Container(
+                height: 32,
+                width: 32,
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(32)),
+                child: ClipOval(child: Image.asset(Assets.kkImage))),
+            SizedBox(width: 12),
+            Expanded(
+                child: Text(
+              "Krishnakumar CN",
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyText2
+                  ?.copyWith(color: Colors.white),
+            ))
+          ],
+        ),
+        actions: [
+          ProfilePill(),
+          SizedBox(width: 48),
+        ],
+      ),
       body: Container(
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,7 +91,7 @@ class LeftPane extends StatelessWidget {
                       return SectionListItem(e);
                     }).toList()),
                 SizedBox(height: 24),
-                ProfilePill(),
+                // ProfilePill(),
               ])),
     );
   }
@@ -79,12 +103,12 @@ class ProfilePill extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Container(
-            height: 48,
-            width: 48,
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(48)),
-            child: ClipOval(child: Image.asset(Assets.kkImage))),
-        SizedBox(width: 24),
+        // Container(
+        //     height: 48,
+        //     width: 48,
+        //     decoration: BoxDecoration(borderRadius: BorderRadius.circular(48)),
+        //     child: ClipOval(child: Image.asset(Assets.kkImage))),
+        // SizedBox(width: 24),
         getLinkIcon(
             asset: Assets.linkedinIcon,
             url: 'https://www.linkedin.com/in/krishnakumarcn'),

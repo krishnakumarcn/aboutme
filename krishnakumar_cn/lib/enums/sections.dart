@@ -1,6 +1,6 @@
 enum Section {
   WorkExperience,
-  Projects,
+  Education,
   Tech,
   Personal,
 }
@@ -11,8 +11,8 @@ extension SectionExtension on Section {
       case Section.WorkExperience:
         return 'Work Experience';
 
-      case Section.Projects:
-        return 'Projects';
+      case Section.Education:
+        return 'Education';
       case Section.Tech:
         return 'Technologies';
       case Section.Personal:
