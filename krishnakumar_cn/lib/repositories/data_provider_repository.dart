@@ -12,21 +12,32 @@ class DataRepository {
         company: 'Flujo',
         description:
             '''Flujo is a communication & collaboration suite for teams. With natively built key business essentials like messaging, audio and video calling, drive, meetings, tasks, calendar, notes, and kanbans, Flujo helps to eliminate the clutter of team collaboration. As the head of Flujo mobile, strategized, designed, and built the Flujo mobile application''',
+        fullDescription:
+            '''• Built Flujo's Android and iOS applications with a single codebase using Flutter from scratch including design, development, testing, and CI/CD.
+• Established design principles and coding standards across the team.
+• Worked closely with the product team and user experience team to make the end-user experience world-class.
+• Contributed to several open source communities in the due process''',
       ),
       WorkExperience(
-        duration: '2018-2019',
-        role: 'Software Engineer',
-        company: 'Nissan Motor Corporation',
-        description:
-            '''Nissan Digital is a subsidiary of Nissan Motor Corporation, a global automotive OEM, and the world's largest EV manufacturer that transforms the automobile business using Digital Technologies.''',
-      ),
+          duration: '2018-2019',
+          role: 'Software Engineer',
+          company: 'Nissan Motor Corporation',
+          description:
+              '''Nissan Digital is a subsidiary of Nissan Motor Corporation, a global automotive OEM, and the world's largest EV manufacturer that transforms the automobile business using Digital Technologies.''',
+          fullDescription:
+              '''• As one of the early members of the digital transformation of Nissan Motors, initially worked on accelerating the digital transformation activities by creating a repository for reusable software components.
+• Later, as part of the supply chain management team, I've built and contributed to the platform for vehicle quality management which is currently used in different Nissan manufacturing plants across the globe.
+• Used my experience as a native Android and iOS developer to act as a developer advocate for several initiatives at Nissan.'''),
       WorkExperience(
-        duration: '2017-2018',
-        role: 'Software Engineer',
-        company: 'Tismo',
-        description:
-            '''Tismo is a design engineering firm that offers product realization services from concept to end-product. As a fresh graduate engineer at Tismo, had the opportunity to work on a variety of projects and gained knowledge in different areas of Software Engineering.''',
-      ),
+          duration: '2017-2018',
+          role: 'Software Engineer',
+          company: 'Tismo',
+          description:
+              '''Tismo is a design engineering firm that offers product realization services from concept to end-product. As a fresh graduate engineer at Tismo, had the opportunity to work on a variety of projects and gained knowledge in different areas of Software Engineering.''',
+          fullDescription:
+              '''• Involved in the process of Software Engineering from requirement analysis to the design, development, and delivery of the product.
+• Explored different areas like mobile, web, and desktop application development.
+• Built multiple industrial mobile applications each for Android and iOS in the domain of embedded systems.'''),
     ];
   }
 
@@ -52,11 +63,11 @@ class DataRepository {
 
   List<TechData> getTechData() {
     return [
-      TechData(title: 'Flutter', description: '', asset: ''),
-      TechData(title: 'Dart', description: '', asset: ''),
-      TechData(title: 'Android', description: '', asset: ''),
-      TechData(title: 'iOS', description: '', asset: ''),
-      TechData(title: 'JavaScript', description: '', asset: ''),
+      TechData(title: 'Flutter', description: '', asset: '', rating: 9.0),
+      TechData(title: 'Dart', description: '', asset: '', rating: 9.0),
+      TechData(title: 'Android', description: '', asset: '', rating: 8.0),
+      TechData(title: 'iOS', description: '', asset: '', rating: 7.0),
+      TechData(title: 'JavaScript', description: '', asset: '', rating: 8.0),
     ];
   }
 }
