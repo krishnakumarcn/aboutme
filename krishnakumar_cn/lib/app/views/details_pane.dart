@@ -270,43 +270,67 @@ class _WorkExperienceTileState extends State<WorkExperienceTile> {
           isExpanded = !isExpanded;
         });
       },
-      child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              widget.workExperience?.company ?? "",
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText1
-                  ?.copyWith(letterSpacing: 1, fontSize: 18),
-            ),
-            SizedBox(height: 4),
-            Text(
-              (widget.workExperience?.role ?? "") +
-                  ", " +
-                  (widget.workExperience?.duration ?? ""),
-              style: Theme.of(context).textTheme.caption?.copyWith(
-                  color: Colors.white.withOpacity(
-                    0.7,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.workExperience?.company ?? "",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText1
+                        ?.copyWith(letterSpacing: 1, fontSize: 18),
                   ),
-                  letterSpacing: 2,
-                  height: 1),
-            ),
-            SizedBox(height: 12),
-            Text(
-              widget.workExperience?.description ?? "",
-              style: Theme.of(context).textTheme.bodyText2?.copyWith(),
-            ),
-            isExpanded
-                ? Container(
-                    child: Text(
-                      widget.workExperience?.fullDescription ?? "",
-                      style: Theme.of(context).textTheme.bodyText2?.copyWith(),
-                    ),
-                  )
-                : Container(),
-          ]),
+                  SizedBox(height: 4),
+                  Text(
+                    (widget.workExperience?.role ?? "") +
+                        ", " +
+                        (widget.workExperience?.duration ?? ""),
+                    style: Theme.of(context).textTheme.caption?.copyWith(
+                        color: Colors.white.withOpacity(
+                          0.7,
+                        ),
+                        letterSpacing: 2,
+                        height: 1),
+                  ),
+                  SizedBox(height: 12),
+                  Text(
+                    widget.workExperience?.description ?? "",
+                    style: Theme.of(context).textTheme.bodyText2?.copyWith(),
+                  ),
+                  isExpanded
+                      ? Container(
+                          child: Text(
+                            widget.workExperience?.fullDescription ?? "",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText2
+                                ?.copyWith(),
+                          ),
+                        )
+                      : Container(),
+                ]),
+          ),
+          IconButton(
+            onPressed: null,
+            icon: isExpanded
+                ? RotatedBox(
+                    quarterTurns: -1,
+                    child: Icon(
+                      Icons.chevron_right,
+                      color: Color(0xff4d4d4d),
+                    ))
+                : Icon(
+                    Icons.chevron_right,
+                    color: Color(0xff4d4d4d),
+                  ),
+          )
+        ],
+      ),
     );
   }
 }

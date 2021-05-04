@@ -10,6 +10,5 @@ class Assets {
   static const String linkedinIcon = "$iconPath/linkedin.png";
   static const String gmailIcon = "$iconPath/gmail.png";
   static const String mediumIcon = "$iconPath/medium.png";
-
-  static const String nissanLogo = "$iconPath/nissan.svg";
+  static const String flutterIcon = "$iconPath/flutter.svg";
 }

@@ -18,6 +18,7 @@ dependencies:
   equatable: ^2.0.0
   flutter_bloc: ^7.0.0
   flutter_svg: ^0.22.0
+  flutter_sticky_header: ^0.6.0
   google_fonts: ^2.0.0
   url_launcher: ^6.0.3
 
@@ -39,5 +40,5 @@ flutter:
     - assets/icons/stackoverflow.png
     - assets/icons/gmail.png
     - assets/icons/instagram.png
-    - assets/icons/nissan.svg
+    - assets/icons/flutter.svg
     - assets/icons/medium.png
