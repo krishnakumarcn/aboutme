@@ -101,17 +101,25 @@ class HomeMobile extends StatelessWidget {
         SliverList(
           delegate: SliverChildBuilderDelegate((context, index) {
             return Container(
-              padding: EdgeInsets.only(
-                  left: 18,
-                  right: 18,
-                  top: 12,
-                  bottom: index == (techTilesData?.length ?? 0) - 1 ? 480 : 12),
+              padding:
+                  EdgeInsets.only(left: 18, right: 18, top: 12, bottom: 48),
               child: TechTile(
                 techData: techTilesData?.elementAt(index),
               ),
             );
           }, childCount: techTilesData?.length ?? 0),
         ),
+        SliverToBoxAdapter(
+          child: Container(
+            child: Center(
+              child: Text(
+                'krishnakumarcn\n-made with Flutter-',
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.caption,
+              ),
+            ),
+          ),
+        )
       ],
     );
     return Scaffold(
