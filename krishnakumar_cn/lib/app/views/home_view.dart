@@ -113,7 +113,7 @@ class HomeMobile extends StatelessWidget {
           child: Container(
             child: Center(
               child: Text(
-                'krishnakumarcn\n-made with Flutter-',
+                'krishnakumarcn\nmade with Flutter',
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.caption,
               ),
@@ -162,6 +162,14 @@ class HomeDesktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Container(
+        child: Text(
+          'krishnakumarcn\nmade with Flutter',
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.caption,
+        ),
+      ),
       appBar: AppBar(
         title: Row(
           children: [
@@ -195,7 +203,7 @@ class HomeDesktop extends StatelessWidget {
           children: [
             Flexible(
               flex: 2,
-              child: OverviewPane(),
+              child: SingleChildScrollView(child: OverviewPane()),
             ),
             SizedBox(width: MediaQuery.of(context).size.width * 0.10),
             Flexible(
