@@ -1,6 +1,7 @@
 {
   "projects": {
     "default": "krishnakumarcn-7512e",
-    "release": "krishnakumarcn-7512e"
+    "release": "krishnakumarcn-7512e",
+    "prod": "krishnakumarcn-7512e"
   }
 }

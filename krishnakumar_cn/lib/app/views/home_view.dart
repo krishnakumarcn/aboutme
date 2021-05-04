@@ -49,7 +49,7 @@ class HomeMobile extends StatelessWidget {
           backgroundColor: Theme.of(context).accentColor,
           centerTitle: false,
           primary: true,
-          expandedHeight: 382.0,
+          expandedHeight: 420.0,
           pinned: true,
           floating: true,
           snap: false,
