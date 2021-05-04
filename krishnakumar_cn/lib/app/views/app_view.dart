@@ -7,6 +7,7 @@ class AppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         accentColor: Color(0xff202022),
         primaryColor: Color(0xff171717),

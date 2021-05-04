@@ -1,14 +1,156 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krishnakumar_cn/app/models/work_experience.dart';
-import 'package:krishnakumar_cn/app/views/right_pane.dart';
+import 'package:krishnakumar_cn/app/views/details_pane.dart';
 import 'package:krishnakumar_cn/bloc/app_bloc.dart';
 import 'package:krishnakumar_cn/enums/sections.dart';
 import 'package:krishnakumar_cn/helpers/assets.dart';
 import 'package:krishnakumar_cn/helpers/assets.dart';
+import 'package:krishnakumar_cn/helpers/ui/screen_type_layout.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'overview_pane.dart';
+
 class Home extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ScreenTypeLayout(
+      mobile: HomeMobile(),
+      desktop: HomeDesktop(),
+    );
+  }
+}
+
+class HomeMobile extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final workExperienceTilesData =
+        context.watch<AppBloc>().state.workExperiences;
+    final educationTilesData = context.watch<AppBloc>().state.educationData;
+    final techTilesData = context.watch<AppBloc>().state.techData;
+    return CustomScrollView(
+      slivers: [
+        SliverAppBar(
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                  height: 32,
+                  width: 32,
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(32)),
+                  child: ClipOval(child: Image.asset(Assets.kkImage))),
+              SizedBox(width: 12),
+              ExternalLinks(),
+            ],
+          ),
+          backgroundColor: Theme.of(context).accentColor,
+          centerTitle: false,
+          primary: true,
+          expandedHeight: 382.0,
+          pinned: true,
+          floating: true,
+          snap: false,
+          elevation: 10,
+          flexibleSpace: FlexibleSpaceBar(
+            background: Column(
+              children: [
+                SizedBox(height: 64),
+                OverviewPane(),
+              ],
+            ),
+            titlePadding: EdgeInsets.all(16),
+          ),
+        ),
+        SliverSubHeader(
+          text: '00. Work Experience',
+          backgroundColor: Colors.black,
+        ),
+        SliverList(
+          delegate: SliverChildBuilderDelegate((context, index) {
+            return Container(
+              padding:
+                  EdgeInsets.only(left: 18, right: 18, bottom: 12, top: 12),
+              child: WorkExperienceTile(
+                workExperience: workExperienceTilesData?.elementAt(index),
+              ),
+            );
+          }, childCount: workExperienceTilesData?.length ?? 0),
+        ),
+        SliverSubHeader(
+          text: '01. Education',
+          backgroundColor: Colors.black,
+        ),
+        SliverList(
+          delegate: SliverChildBuilderDelegate((context, index) {
+            return Container(
+              padding:
+                  EdgeInsets.only(left: 18, right: 18, bottom: 12, top: 12),
+              child: EducationTile(
+                educationData: educationTilesData?.elementAt(index),
+              ),
+            );
+          }, childCount: educationTilesData?.length ?? 0),
+        ),
+        SliverSubHeader(
+          text: '02. Technologies',
+          backgroundColor: Colors.black,
+        ),
+        SliverList(
+          delegate: SliverChildBuilderDelegate((context, index) {
+            return Container(
+              padding: EdgeInsets.only(
+                  left: 18,
+                  right: 18,
+                  top: 12,
+                  bottom: index == (techTilesData?.length ?? 0) - 1 ? 320 : 12),
+              child: TechTile(
+                techData: techTilesData?.elementAt(index),
+              ),
+            );
+          }, childCount: techTilesData?.length ?? 0),
+        ),
+      ],
+    );
+    return Scaffold(
+      appBar: AppBar(
+        title: Row(
+          children: [
+            // SizedBox(width: 8),
+            Container(
+                height: 32,
+                width: 32,
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(32)),
+                child: ClipOval(child: Image.asset(Assets.kkImage))),
+            SizedBox(width: 12),
+          ],
+        ),
+        actions: [
+          ExternalLinks(),
+        ],
+      ),
+      body: Container(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              OverviewPane(),
+              SizedBox(height: MediaQuery.of(context).size.width * 0.10),
+              DetailsPane(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class HomeDesktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +176,7 @@ class Home extends StatelessWidget {
           ],
         ),
         actions: [
-          ProfilePill(),
+          ExternalLinks(),
           SizedBox(width: 48),
         ],
       ),
@@ -45,12 +187,12 @@ class Home extends StatelessWidget {
           children: [
             Flexible(
               flex: 2,
-              child: LeftPane(),
+              child: OverviewPane(),
             ),
             SizedBox(width: MediaQuery.of(context).size.width * 0.10),
             Flexible(
               flex: 3,
-              child: RightPane(),
+              child: DetailsPane(),
             ),
           ],
         ),
@@ -59,56 +201,12 @@ class Home extends StatelessWidget {
   }
 }
 
-class LeftPane extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<AppBloc, AppState>(
-      builder: (context, state) => Container(
-          padding: EdgeInsets.only(left: 82, top: 82),
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  "Hello, I\'m\nKrishnakumar Narayanan.",
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline2
-                      ?.copyWith(fontWeight: FontWeight.w700),
-                ),
-                SizedBox(height: 12),
-                Text(
-                    '''Engineer with a strong passion for computers and application development. My areas of interest include mobile & web-based application development and cloud engineering including the strategy and execution of product development activities. As a keen developer, I always thrive to keep myself updated on the latest trends and adaptations introduced in my fields of interest''',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyText2
-                        ?.copyWith(height: 1.6)),
-                SizedBox(height: 24),
-                ListView(
-                    shrinkWrap: true,
-                    padding: EdgeInsets.zero,
-                    children: Section.values.map((e) {
-                      return SectionListItem(e);
-                    }).toList()),
-                SizedBox(height: 24),
-                // ProfilePill(),
-              ])),
-    );
-  }
-}
-
-class ProfilePill extends StatelessWidget {
+class ExternalLinks extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        // Container(
-        //     height: 48,
-        //     width: 48,
-        //     decoration: BoxDecoration(borderRadius: BorderRadius.circular(48)),
-        //     child: ClipOval(child: Image.asset(Assets.kkImage))),
-        // SizedBox(width: 24),
         getLinkIcon(
             asset: Assets.linkedinIcon,
             url: 'https://www.linkedin.com/in/krishnakumarcn'),
@@ -129,6 +227,10 @@ class ProfilePill extends StatelessWidget {
         getLinkIcon(
             asset: Assets.instagramIcon,
             url: "https://www.instagram.com/krishnakumar_cn/"),
+        SizedBox(width: 12),
+        getLinkIcon(
+            asset: Assets.mediumIcon,
+            url: "https://krishnakumarcn.medium.com/"),
         SizedBox(width: 12),
       ],
     );
@@ -159,48 +261,67 @@ class ProfilePill extends StatelessWidget {
   }
 }
 
-class SectionListItem extends StatefulWidget {
-  const SectionListItem(this.section);
-  final Section section;
+class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+  final double minHeight;
+  final double maxHeight;
+  final Widget child;
+
+  _SliverAppBarDelegate({
+    required this.minHeight,
+    required this.maxHeight,
+    required this.child,
+  });
+
   @override
-  _SectionListItemState createState() => _SectionListItemState();
+  double get minExtent => minHeight;
+
+  @override
+  double get maxExtent => max(maxHeight, minHeight);
+
+  // 2
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return SizedBox.expand(child: child);
+  }
+
+  // 3
+  @override
+  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
+    return maxHeight != oldDelegate.maxHeight ||
+        minHeight != oldDelegate.minHeight ||
+        child != oldDelegate.child;
+  }
 }
 
-class _SectionListItemState extends State<SectionListItem> {
+class SliverSubHeader extends StatelessWidget {
+  final String text;
+  final Color backgroundColor;
+
+  const SliverSubHeader(
+      {Key? key, required this.text, required this.backgroundColor})
+      : assert(text != null),
+        assert(backgroundColor != null),
+        super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    final bool isSelected =
-        context.watch<AppBloc>().state.selectedSection == widget.section;
-    final Color color = isSelected ? Colors.white : Color(0xff949495);
-    final double fontSize = isSelected ? 14 : 10;
-    return InkWell(
-      highlightColor: Colors.transparent,
-      onTap: () =>
-          context.read<AppBloc>().add(SelectedSectionChanged(widget.section)),
-      child: ListTile(
-        leading: Text(
-          "${widget.section.index.toString().padLeft(2, '0')}",
-          style: Theme.of(context)
-              .textTheme
-              .caption
-              ?.copyWith(color: color, fontSize: fontSize),
-        ),
-        contentPadding: EdgeInsets.zero,
-        horizontalTitleGap: 0,
-        minLeadingWidth: 0,
-        title: Row(
-          children: [
-            SizedBox(width: 12),
-            Container(height: 1, width: isSelected ? 82 : 48, color: color),
-            SizedBox(width: 12),
-            Text(
-              widget.section.displayText.toUpperCase(),
-              style: Theme.of(context)
-                  .textTheme
-                  .caption
-                  ?.copyWith(color: color, fontSize: fontSize),
-            ),
-          ],
+    return SliverPersistentHeader(
+      pinned: true,
+      delegate: _SliverAppBarDelegate(
+        minHeight: 56,
+        maxHeight: 56,
+        child: Container(
+          color: backgroundColor,
+          padding: EdgeInsets.only(left: 18, right: 18, top: 18, bottom: 18),
+          child: Text(
+            text,
+            textAlign: TextAlign.start,
+            style: Theme.of(context)
+                .textTheme
+                .caption
+                ?.copyWith(color: Colors.white, fontSize: 18),
+          ),
         ),
       ),
     );

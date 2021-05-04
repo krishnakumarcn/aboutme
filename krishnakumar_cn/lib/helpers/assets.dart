@@ -9,6 +9,7 @@ class Assets {
   static const String instagramIcon = "$iconPath/instagram.png";
   static const String linkedinIcon = "$iconPath/linkedin.png";
   static const String gmailIcon = "$iconPath/gmail.png";
+  static const String mediumIcon = "$iconPath/medium.png";
 
   static const String nissanLogo = "$iconPath/nissan.svg";
 }

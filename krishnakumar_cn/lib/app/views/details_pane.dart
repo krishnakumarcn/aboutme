@@ -3,22 +3,111 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:krishnakumar_cn/app/models/education_data.dart';
 import 'package:krishnakumar_cn/app/models/tech_data.dart';
 import 'package:krishnakumar_cn/app/models/work_experience.dart';
+import 'package:krishnakumar_cn/app/views/overview_pane.dart';
 import 'package:krishnakumar_cn/bloc/app_bloc.dart';
 import 'package:krishnakumar_cn/enums/sections.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krishnakumar_cn/helpers/assets.dart';
+import 'package:krishnakumar_cn/helpers/ui/screen_type_layout.dart';
 
-class RightPane extends StatefulWidget {
+// class DetailsPane extends StatefulWidget {
+//   @override
+//   _DetailsPaneState createState() => _DetailsPaneState();
+// }
+
+class DetailsPane extends StatelessWidget {
+  // @override
+  // void initState() {
+  //   super.initState();
+  // }
+
   @override
-  _RightPaneState createState() => _RightPaneState();
+  Widget build(BuildContext context) {
+    return ScreenTypeLayout(
+      mobile: DetailsPaneMobile(),
+      desktop: DetailsPaneDesktop(),
+    );
+  }
 }
 
-class _RightPaneState extends State<RightPane> {
+class DetailsPaneMobile extends StatelessWidget {
   @override
-  void initState() {
-    super.initState();
+  Widget build(BuildContext context) {
+    final workExperienceTiles = context.watch<AppBloc>().state.workExperiences;
+    final educationTiles = context.watch<AppBloc>().state.educationData;
+    final techTiles = context.watch<AppBloc>().state.techData;
+    return Container(
+      padding: EdgeInsets.all(18),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SectionListItem(
+            Section.WorkExperience,
+            defaultSelected: true,
+          ),
+          Column(
+            children: workExperienceTiles
+                    ?.map((e) => Container(
+                        margin: EdgeInsets.only(bottom: 12),
+                        padding: EdgeInsets.all(18),
+                        color: Theme.of(context).accentColor,
+                        child: getTile(Section.WorkExperience, e)))
+                    .toList() ??
+                [],
+          ),
+          SectionListItem(
+            Section.Education,
+            defaultSelected: true,
+          ),
+          Column(
+            children: educationTiles
+                    ?.map((e) => Container(
+                        margin: EdgeInsets.only(bottom: 12),
+                        padding: EdgeInsets.all(18),
+                        color: Theme.of(context).accentColor,
+                        child: getTile(Section.Education, e)))
+                    .toList() ??
+                [],
+          ),
+          SectionListItem(
+            Section.Tech,
+            defaultSelected: true,
+          ),
+          Column(
+            children: techTiles
+                    ?.map((e) => Container(
+                        margin: EdgeInsets.only(bottom: 12),
+                        padding: EdgeInsets.all(18),
+                        color: Theme.of(context).accentColor,
+                        child: getTile(Section.Tech, e)))
+                    .toList() ??
+                [],
+          ),
+        ],
+      ),
+    );
   }
 
+  getTile(Section? selectedSection, var item) {
+    switch (selectedSection) {
+      case Section.WorkExperience:
+        return WorkExperienceTile(
+          workExperience: item,
+        );
+      case Section.Education:
+        return EducationTile(educationData: item);
+      case Section.Tech:
+        return TechTile(techData: item);
+      // case Section.Personal:
+      //   break;
+      default:
+        break;
+    }
+    return Container();
+  }
+}
+
+class DetailsPaneDesktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final selectedSection = context.watch<AppBloc>().state.selectedSection;
@@ -32,7 +121,6 @@ class _RightPaneState extends State<RightPane> {
         break;
       case Section.Tech:
         tiles = context.watch<AppBloc>().state.techData;
-        // return TechPane(tiles);
         break;
         // case Section.Personal:
         // return Container(
@@ -46,7 +134,6 @@ class _RightPaneState extends State<RightPane> {
       default:
         break;
     }
-
     return Container(
       padding: EdgeInsets.only(
         right: 82,
@@ -84,19 +171,6 @@ class _RightPaneState extends State<RightPane> {
     return Container();
   }
 }
-
-// class TechPane extends StatelessWidget {
-//   final List<TechData>? items;
-//
-//   const TechPane(this.items);
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       margin: EdgeInsets.only(right: 82, top: 82),
-//       child: ListView.builder(itemBuilder: itemBuilder),
-//     );
-//   }
-// }
 
 class PersonalPage extends StatelessWidget {
   @override
@@ -155,6 +229,7 @@ class TechTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -242,34 +317,37 @@ class EducationTile extends StatelessWidget {
   const EducationTile({Key? key, this.educationData}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Text(
-            educationData?.schoolCollegeName ?? "",
-            style: Theme.of(context)
-                .textTheme
-                .bodyText1
-                ?.copyWith(letterSpacing: 1, fontSize: 18),
-          ),
-          SizedBox(height: 4),
-          Text(
-            (educationData?.course ?? "") +
-                ", " +
-                (educationData?.duration ?? ""),
-            style: Theme.of(context).textTheme.caption?.copyWith(
-                color: Colors.white.withOpacity(
-                  0.7,
-                ),
-                letterSpacing: 2,
-                height: 1),
-          ),
-          SizedBox(height: 12),
-          Text(
-            educationData?.gpaOrMarks ?? "",
-            style: Theme.of(context).textTheme.bodyText2?.copyWith(),
-          )
-        ]);
+    return Container(
+      width: double.infinity,
+      child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              educationData?.schoolCollegeName ?? "",
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyText1
+                  ?.copyWith(letterSpacing: 1, fontSize: 18),
+            ),
+            SizedBox(height: 4),
+            Text(
+              (educationData?.course ?? "") +
+                  ", " +
+                  (educationData?.duration ?? ""),
+              style: Theme.of(context).textTheme.caption?.copyWith(
+                  color: Colors.white.withOpacity(
+                    0.7,
+                  ),
+                  letterSpacing: 2,
+                  height: 1),
+            ),
+            SizedBox(height: 12),
+            Text(
+              educationData?.gpaOrMarks ?? "",
+              style: Theme.of(context).textTheme.bodyText2?.copyWith(),
+            )
+          ]),
+    );
   }
 }
