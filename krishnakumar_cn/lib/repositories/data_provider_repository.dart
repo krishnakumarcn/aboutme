@@ -1,7 +1,6 @@
 import 'package:krishnakumar_cn/app/models/education_data.dart';
 import 'package:krishnakumar_cn/app/models/tech_data.dart';
 import 'package:krishnakumar_cn/app/models/work_experience.dart';
-import 'package:krishnakumar_cn/helpers/assets.dart';
 
 class DataRepository {
   List<WorkExperience> getWorkExperience() {

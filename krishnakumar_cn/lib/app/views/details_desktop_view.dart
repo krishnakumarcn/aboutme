@@ -1,109 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krishnakumar_cn/app/models/education_data.dart';
 import 'package:krishnakumar_cn/app/models/tech_data.dart';
 import 'package:krishnakumar_cn/app/models/work_experience.dart';
-import 'package:krishnakumar_cn/app/views/overview_pane.dart';
 import 'package:krishnakumar_cn/bloc/app_bloc.dart';
 import 'package:krishnakumar_cn/enums/sections.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:krishnakumar_cn/helpers/assets.dart';
-import 'package:krishnakumar_cn/helpers/ui/screen_type_layout.dart';
 
-// class DetailsPane extends StatefulWidget {
-//   @override
-//   _DetailsPaneState createState() => _DetailsPaneState();
-// }
-
-class DetailsPane extends StatelessWidget {
-  // @override
-  // void initState() {
-  //   super.initState();
-  // }
-
+class DetailsDesktopView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ScreenTypeLayout(
-      mobile: DetailsPaneMobile(),
-      desktop: DetailsPaneDesktop(),
-    );
-  }
-}
-
-class DetailsPaneMobile extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final workExperienceTiles = context.watch<AppBloc>().state.workExperiences;
-    final educationTiles = context.watch<AppBloc>().state.educationData;
-    final techTiles = context.watch<AppBloc>().state.techData;
-    return Container(
-      padding: EdgeInsets.all(18),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SectionListItem(
-            Section.WorkExperience,
-            defaultSelected: true,
-          ),
-          Column(
-            children: workExperienceTiles
-                    ?.map((e) => Container(
-                        margin: EdgeInsets.only(bottom: 12),
-                        padding: EdgeInsets.all(18),
-                        color: Theme.of(context).accentColor,
-                        child: getTile(Section.WorkExperience, e)))
-                    .toList() ??
-                [],
-          ),
-          SectionListItem(
-            Section.Education,
-            defaultSelected: true,
-          ),
-          Column(
-            children: educationTiles
-                    ?.map((e) => Container(
-                        margin: EdgeInsets.only(bottom: 12),
-                        padding: EdgeInsets.all(18),
-                        color: Theme.of(context).accentColor,
-                        child: getTile(Section.Education, e)))
-                    .toList() ??
-                [],
-          ),
-          SectionListItem(
-            Section.Tech,
-            defaultSelected: true,
-          ),
-          Column(
-            children: techTiles
-                    ?.map((e) => Container(
-                        margin: EdgeInsets.only(bottom: 12),
-                        padding: EdgeInsets.all(18),
-                        color: Theme.of(context).accentColor,
-                        child: getTile(Section.Tech, e)))
-                    .toList() ??
-                [],
-          ),
-        ],
-      ),
-    );
-  }
-
-  getTile(Section? selectedSection, var item) {
-    switch (selectedSection) {
-      case Section.WorkExperience:
-        return WorkExperienceTile(
-          workExperience: item,
-        );
-      case Section.Education:
-        return EducationTile(educationData: item);
-      case Section.Tech:
-        return TechTile(techData: item);
-      // case Section.Personal:
-      //   break;
-      default:
-        break;
-    }
-    return Container();
+    return DetailsPaneDesktop();
   }
 }
 

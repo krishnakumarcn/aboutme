@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:krishnakumar_cn/app/models/education_data.dart';
 import 'package:krishnakumar_cn/app/models/tech_data.dart';
 import 'package:krishnakumar_cn/app/models/work_experience.dart';

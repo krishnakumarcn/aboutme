@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:krishnakumar_cn/bloc/app_bloc.dart';
-import 'package:krishnakumar_cn/enums/sections.dart';
 import 'package:krishnakumar_cn/repositories/data_provider_repository.dart';
+
+import 'app/views/app_view.dart';
 import 'helpers/configure_nonweb.dart'
     if (dart.library.html) 'helpers/configure_web.dart';
-import 'app/views/app_view.dart';
 
 void main() {
   configureApp();
