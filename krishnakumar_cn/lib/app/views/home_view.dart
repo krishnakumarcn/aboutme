@@ -53,7 +53,7 @@ class HomeMobile extends StatelessWidget {
           primary: true,
           expandedHeight: 420.0,
           pinned: true,
-          floating: true,
+          floating: false,
           snap: false,
           elevation: 20,
           flexibleSpace: FlexibleSpaceBar(
