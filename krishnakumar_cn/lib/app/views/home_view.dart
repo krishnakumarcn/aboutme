@@ -105,7 +105,7 @@ class HomeMobile extends StatelessWidget {
                   left: 18,
                   right: 18,
                   top: 12,
-                  bottom: index == (techTilesData?.length ?? 0) - 1 ? 320 : 12),
+                  bottom: index == (techTilesData?.length ?? 0) - 1 ? 480 : 12),
               child: TechTile(
                 techData: techTilesData?.elementAt(index),
               ),
@@ -309,8 +309,8 @@ class SliverSubHeader extends StatelessWidget {
     return SliverPersistentHeader(
       pinned: true,
       delegate: _SliverAppBarDelegate(
-        minHeight: 56,
-        maxHeight: 56,
+        minHeight: 62,
+        maxHeight: 62,
         child: Container(
           color: backgroundColor,
           padding: EdgeInsets.only(left: 18, right: 18, top: 18, bottom: 18),

@@ -25,7 +25,7 @@ class OverviewMobile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  "Hello, I\'m\nKrishnakumar\nNarayanan.",
+                  "Hello, I\'m\nKrishnakumar Narayanan.",
                   style: Theme.of(context)
                       .textTheme
                       .headline4
