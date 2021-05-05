@@ -1,11 +1,11 @@
 {
-    "name": "krishnakumar_cn",
-    "short_name": "krishnakumar_cn",
+    "name": "krishnakumarcn",
+    "short_name": "krishnakumarcn",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#212121",
+    "theme_color": "#212121",
+    "description": "Portfolio, Krishnakumar CN",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
