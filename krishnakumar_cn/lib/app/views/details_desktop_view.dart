@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:krishnakumar_cn/app/models/education_data.dart';
 import 'package:krishnakumar_cn/app/models/tech_data.dart';
 import 'package:krishnakumar_cn/app/models/work_experience.dart';
@@ -21,45 +22,85 @@ class DetailsPaneDesktop extends StatelessWidget {
     switch (selectedSection) {
       case Section.WorkExperience:
         tiles = context.watch<AppBloc>().state.workExperiences;
+        return Container(
+          padding: EdgeInsets.only(
+            right: 82,
+          ),
+          child: ListView.builder(
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              final tileItem = tiles.elementAt(index);
+              return Container(
+                  margin: EdgeInsets.only(bottom: 12, top: index == 0 ? 82 : 0),
+                  padding: EdgeInsets.all(18),
+                  color: Theme.of(context).accentColor,
+                  child: getTile(selectedSection, tileItem));
+            },
+            itemCount: tiles?.length ?? 0,
+          ),
+        );
         break;
       case Section.Education:
         tiles = context.watch<AppBloc>().state.educationData;
-        break;
+        return Container(
+          padding: EdgeInsets.only(
+            right: 82,
+          ),
+          child: ListView.builder(
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              final tileItem = tiles.elementAt(index);
+              return Container(
+                  margin: EdgeInsets.only(bottom: 12, top: index == 0 ? 82 : 0),
+                  padding: EdgeInsets.all(18),
+                  color: Theme.of(context).accentColor,
+                  child: getTile(selectedSection, tileItem));
+            },
+            itemCount: tiles?.length ?? 0,
+          ),
+        );
       case Section.Tech:
         tiles = context.watch<AppBloc>().state.techData;
-        break;
-        // case Section.Personal:
-        // return Container(
-        //   padding: EdgeInsets.only(
-        //     right: 82,
-        //   ),
-        //   child: PersonalPage(),
-        // );
 
-        break;
+        return Container(
+          margin: EdgeInsets.only(top: 82, right: 82),
+          child: StaggeredGridView.countBuilder(
+            crossAxisCount: 4,
+            itemCount: tiles?.length ?? 0,
+            itemBuilder: (BuildContext context, int index) => Container(
+                margin: EdgeInsets.only(right: 12, bottom: 12),
+                color: Theme.of(context).accentColor,
+                child: getTile(Section.Tech, tiles?.elementAt(index))),
+            staggeredTileBuilder: (int index) =>
+                new StaggeredTile.count(1, index.isEven ? 2 : 1),
+            mainAxisSpacing: 4.0,
+            crossAxisSpacing: 4.0,
+          ),
+        );
+
+        final List<Widget> widgets = tiles
+                ?.map<Widget>((tile) => Container(
+                    margin: EdgeInsets.only(right: 12),
+                    color: Theme.of(context).accentColor,
+                    child: getTile(Section.Tech, tile)))
+                ?.toList() ??
+            const <Widget>[];
+        return Container(
+          padding: EdgeInsets.only(
+            right: 82,
+            top: 82,
+          ),
+          child: Wrap(
+            children: widgets,
+          ),
+        );
+
       default:
-        break;
+        return Container();
     }
-    return Container(
-      padding: EdgeInsets.only(
-        right: 82,
-      ),
-      child: ListView.builder(
-        shrinkWrap: true,
-        itemBuilder: (context, index) {
-          final tileItem = tiles.elementAt(index);
-          return Container(
-              margin: EdgeInsets.only(bottom: 12, top: index == 0 ? 82 : 0),
-              padding: EdgeInsets.all(18),
-              color: Theme.of(context).accentColor,
-              child: getTile(selectedSection, tileItem));
-        },
-        itemCount: tiles?.length ?? 0,
-      ),
-    );
   }
 
-  getTile(Section? selectedSection, var item) {
+  Widget getTile(Section? selectedSection, var item) {
     switch (selectedSection) {
       case Section.WorkExperience:
         return WorkExperienceTile(
@@ -135,10 +176,11 @@ class TechTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
+      padding: EdgeInsets.all(12),
       child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Text(
               techData?.title ?? "",
@@ -147,11 +189,11 @@ class TechTile extends StatelessWidget {
                   .bodyText1
                   ?.copyWith(letterSpacing: 1, fontSize: 18),
             ),
-            SizedBox(height: 12),
-            Text(
-              techData?.description ?? "",
-              style: Theme.of(context).textTheme.bodyText2?.copyWith(),
-            )
+            // SizedBox(height: 12),
+            // Text(
+            //   techData?.description ?? "",
+            //   style: Theme.of(context).textTheme.bodyText2?.copyWith(),
+            // )
           ]),
     );
   }

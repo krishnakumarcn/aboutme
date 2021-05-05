@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:krishnakumar_cn/app/views/details_desktop_view.dart';
@@ -22,146 +23,175 @@ class Home extends StatelessWidget {
 }
 
 class HomeMobile extends StatelessWidget {
+  final ScrollController scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     final workExperienceTilesData =
         context.watch<AppBloc>().state.workExperiences;
     final educationTilesData = context.watch<AppBloc>().state.educationData;
     final techTilesData = context.watch<AppBloc>().state.techData;
-    return CustomScrollView(
-      slivers: [
-        SliverAppBar(
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                  height: 32,
-                  width: 32,
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(32)),
-                  child: ClipOval(child: Image.asset(Assets.kkImage))),
-              SizedBox(width: 12),
-              ExternalLinks(),
-            ],
-          ),
-          backgroundColor: Theme.of(context).accentColor,
-          centerTitle: false,
-          primary: true,
-          expandedHeight: 420.0,
-          pinned: true,
-          floating: false,
-          snap: false,
-          elevation: 20,
-          flexibleSpace: FlexibleSpaceBar(
-            background: Column(
+    return Container(
+      color: Colors.black,
+      child: CustomScrollView(
+        controller: scrollController,
+        slivers: [
+          SliverAppBar(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(height: 64),
-                OverviewPane(),
+                Container(
+                    height: 32,
+                    width: 32,
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(32)),
+                    child: ClipOval(child: Image.asset(Assets.kkImage))),
+                SizedBox(width: 12),
+                ExternalLinks(),
               ],
             ),
-            titlePadding: EdgeInsets.all(16),
-          ),
-        ),
-        SliverStickyHeader(
-          header: new Container(
-            height: 60.0,
-            color: Colors.black,
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
-            alignment: Alignment.centerLeft,
-            child: new Text(
-              '00. Work Experience',
-              style: const TextStyle(color: Colors.white),
-            ),
-          ),
-          sliver: SliverList(
-            delegate: SliverChildBuilderDelegate((context, index) {
-              return Container(
-                padding:
-                    EdgeInsets.only(left: 18, right: 18, bottom: 12, top: 12),
-                child: WorkExperienceTile(
-                  workExperience: workExperienceTilesData?.elementAt(index),
-                ),
-              );
-            }, childCount: workExperienceTilesData?.length ?? 0),
-          ),
-        ),
-        SliverStickyHeader(
-          header: new Container(
-            height: 60.0,
-            color: Colors.black,
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
-            alignment: Alignment.centerLeft,
-            child: new Text(
-              '01. Education',
-              style: const TextStyle(color: Colors.white),
-            ),
-          ),
-          sliver: SliverList(
-            delegate: SliverChildBuilderDelegate((context, index) {
-              return Container(
-                padding:
-                    EdgeInsets.only(left: 18, right: 18, bottom: 12, top: 12),
-                child: EducationTile(
-                  educationData: educationTilesData?.elementAt(index),
-                ),
-              );
-            }, childCount: educationTilesData?.length ?? 0),
-          ),
-        ),
-        SliverStickyHeader(
-          header: new Container(
-            height: 60.0,
-            color: Colors.black,
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
-            alignment: Alignment.centerLeft,
-            child: new Text(
-              '02. Technologies',
-              style: const TextStyle(color: Colors.white),
-            ),
-          ),
-          sliver: SliverList(
-            delegate: SliverChildBuilderDelegate((context, index) {
-              return Container(
-                padding:
-                    EdgeInsets.only(left: 18, right: 18, top: 12, bottom: 48),
-                child: TechTile(
-                  techData: techTilesData?.elementAt(index),
-                ),
-              );
-            }, childCount: techTilesData?.length ?? 0),
-          ),
-        ),
-        SliverToBoxAdapter(
-          child: Container(
-            margin: EdgeInsets.only(bottom: 12),
-            child: Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
+            backgroundColor: Theme.of(context).accentColor,
+            centerTitle: false,
+            primary: true,
+            expandedHeight: 420.0,
+            pinned: true,
+            floating: false,
+            snap: false,
+            elevation: 20,
+            flexibleSpace: FlexibleSpaceBar(
+              background: Column(
                 children: [
-                  InkWell(
-                    onTap: () async {
-                      if (await canLaunch('https://www.flutter.dev')) {
-                        launch('https://www.flutter.dev');
-                      }
-                    },
-                    child: SvgPicture.asset(
-                      Assets.flutterIcon,
-                      color: Color(0xff4d4d4d),
-                      height: 52,
-                    ),
-                  ),
-                  Text(
-                    'krishnakumarcn\nmade with Flutter',
-                    textAlign: TextAlign.start,
-                    style: Theme.of(context).textTheme.caption,
-                  ),
+                  SizedBox(height: 64),
+                  OverviewPane(),
                 ],
               ),
+              titlePadding: EdgeInsets.all(16),
             ),
           ),
-        )
-      ],
+          SliverStickyHeader(
+            header: new Container(
+              height: 60.0,
+              color: Colors.black,
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              alignment: Alignment.centerLeft,
+              child: new Text(
+                '00. Work Experience',
+                style: const TextStyle(color: Colors.white),
+              ),
+            ),
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate((context, index) {
+                return Container(
+                  padding:
+                      EdgeInsets.only(left: 18, right: 18, bottom: 12, top: 12),
+                  child: WorkExperienceTile(
+                    workExperience: workExperienceTilesData?.elementAt(index),
+                  ),
+                );
+              }, childCount: workExperienceTilesData?.length ?? 0),
+            ),
+          ),
+          SliverStickyHeader(
+            header: new Container(
+              height: 60.0,
+              color: Colors.black,
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              alignment: Alignment.centerLeft,
+              child: new Text(
+                '01. Education',
+                style: const TextStyle(color: Colors.white),
+              ),
+            ),
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate((context, index) {
+                return Container(
+                  padding:
+                      EdgeInsets.only(left: 18, right: 18, bottom: 12, top: 12),
+                  child: EducationTile(
+                    educationData: educationTilesData?.elementAt(index),
+                  ),
+                );
+              }, childCount: educationTilesData?.length ?? 0),
+            ),
+          ),
+          SliverStickyHeader(
+            header: new Container(
+              height: 60.0,
+              color: Colors.black,
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              alignment: Alignment.centerLeft,
+              child: new Text(
+                '02. Technologies',
+                style: const TextStyle(color: Colors.white),
+              ),
+            ),
+            sliver: SliverToBoxAdapter(
+              child: Container(
+                color: Colors.black,
+                padding: EdgeInsets.all(12),
+                margin: EdgeInsets.only(bottom: 320),
+                child: StaggeredGridView.countBuilder(
+                  controller: scrollController,
+                  crossAxisCount: 3,
+                  shrinkWrap: true,
+                  itemCount: techTilesData?.length ?? 0,
+                  itemBuilder: (BuildContext context, int index) => Container(
+                      // margin: EdgeInsets.only(right: 12, bottom: 12),
+                      color: Theme.of(context).accentColor,
+                      child: TechTile(
+                        techData: techTilesData?.elementAt(index),
+                      )),
+                  staggeredTileBuilder: (int index) =>
+                      new StaggeredTile.count(1, index.isEven ? 1.3 : 1),
+                  mainAxisSpacing: 12.0,
+                  crossAxisSpacing: 12.0,
+                ),
+              ),
+            ),
+
+            // SliverList(
+            //   delegate: SliverChildBuilderDelegate((context, index) {
+            //     return Container(
+            //       padding:
+            //           EdgeInsets.only(left: 18, right: 18, top: 12, bottom: 48),
+            //       child: TechTile(
+            //         techData: techTilesData?.elementAt(index),
+            //       ),
+            //     );
+            //   }, childCount: techTilesData?.length ?? 0),
+            // ),
+          ),
+          SliverToBoxAdapter(
+            child: Container(
+              margin: EdgeInsets.only(bottom: 12),
+              child: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    InkWell(
+                      onTap: () async {
+                        if (await canLaunch('https://www.flutter.dev')) {
+                          launch('https://www.flutter.dev');
+                        }
+                      },
+                      child: SvgPicture.asset(
+                        Assets.flutterIcon,
+                        color: Color(0xff4d4d4d),
+                        height: 52,
+                      ),
+                    ),
+                    Text(
+                      'krishnakumarcn\nmade with Flutter',
+                      textAlign: TextAlign.start,
+                      style: Theme.of(context).textTheme.caption,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
