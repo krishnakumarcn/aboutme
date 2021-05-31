@@ -18,6 +18,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
           educationData: dataProviderRepository.getEducationData(),
           techData: dataProviderRepository.getTechData(),
         ));
+
   @override
   Stream<AppState> mapEventToState(
     AppEvent event,

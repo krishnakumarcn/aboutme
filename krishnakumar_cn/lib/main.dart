@@ -14,7 +14,9 @@ void main() {
   ));
 }
 
+// this is an outside comment. wtf!
 class App extends StatelessWidget {
+  // this is a app level comment
   const App({Key? key, required DataRepository dataRepository})
       : _dataRepository = dataRepository,
         super(key: key);
