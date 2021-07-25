@@ -6,8 +6,17 @@ class DataRepository {
   List<WorkExperience> getWorkExperience() {
     return [
       WorkExperience(
-        duration: '2019-Present',
-        role: 'Lead Engineer',
+        duration: '2021-Present',
+        role: 'Berlin, Germany\nSoftware Engineer II',
+        company: 'Delivery Hero',
+        description:
+            '''Delivery Hero is a European multinational online food-delivery service based in Berlin, Germany. The company operates in 40+ countries internationally in Europe, Asia, Latin America and the Middle East and partners with 500,000+ restaurant''',
+        fullDescription:
+            '''Currently working as a Flutter Engineer in Delivery Hero's D-Merchant team. D-Merchant is the mobile application that allows restaurants to talk to their existing suppliers, place and track orders with these suppliers and discover new suppliers.''',
+      ),
+      WorkExperience(
+        duration: '2019-2021',
+        role: 'Hyderabad, India\nLead Engineer',
         company: 'Flujo',
         description:
             '''Flujo is a communication & collaboration suite for teams. With natively built key business essentials like messaging, audio and video calling, drive, meetings, tasks, calendar, notes, and kanbans, Flujo helps to eliminate the clutter of team collaboration. As the head of Flujo mobile, strategized, designed, and built the Flujo mobile application''',
@@ -19,7 +28,7 @@ class DataRepository {
       ),
       WorkExperience(
           duration: '2018-2019',
-          role: 'Software Engineer',
+          role: 'Trivandrum, India\nSoftware Engineer',
           company: 'Nissan Motor Corporation',
           description:
               '''Nissan Digital is a subsidiary of Nissan Motor Corporation, a global automotive OEM, and the world's largest EV manufacturer that transforms the automobile business using Digital Technologies.''',
@@ -29,7 +38,7 @@ class DataRepository {
 • Used my experience as a native Android and iOS developer to act as a developer advocate for several initiatives at Nissan.'''),
       WorkExperience(
           duration: '2017-2018',
-          role: 'Software Engineer',
+          role: 'Bengaluru, India\nSoftware Engineer',
           company: 'Tismo',
           description:
               '''Tismo is a design engineering firm that offers product realization services from concept to end-product. As a fresh graduate engineer at Tismo, had the opportunity to work on a variety of projects and gained knowledge in different areas of Software Engineering.''',
@@ -53,10 +62,7 @@ class DataRepository {
           course: 'Higher Secondary',
           gpaOrMarks: '97.3%'),
       EducationData(
-          schoolCollegeName: 'Sreekrishnapuram HSS',
-          duration: '2000-2010',
-          course: 'High School',
-          gpaOrMarks: '95%')
+          schoolCollegeName: 'Sreekrishnapuram HSS', duration: '2000-2010', course: 'High School', gpaOrMarks: '95%')
     ];
   }
 
