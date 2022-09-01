@@ -7,7 +7,7 @@ class DataRepository {
     return [
       WorkExperience(
         duration: '2021-Present',
-        role: 'Berlin, Germany\nSoftware Engineer II',
+        role: 'Berlin, Germany\nSenior Engineer',
         company: 'Delivery Hero',
         description:
             '''Delivery Hero is a European multinational online food-delivery service based in Berlin, Germany. The company operates in 40+ countries internationally in Europe, Asia, Latin America and the Middle East and partners with 500,000+ restaurant''',
