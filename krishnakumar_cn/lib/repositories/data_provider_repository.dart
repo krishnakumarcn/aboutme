@@ -62,7 +62,10 @@ class DataRepository {
           course: 'Higher Secondary',
           gpaOrMarks: '97.3%'),
       EducationData(
-          schoolCollegeName: 'Sreekrishnapuram HSS', duration: '2000-2010', course: 'High School', gpaOrMarks: '95%')
+          schoolCollegeName: 'Sreekrishnapuram HSS',
+          duration: '2000-2010',
+          course: 'High School',
+          gpaOrMarks: '95%')
     ];
   }
 

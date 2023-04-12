@@ -8,20 +8,33 @@ class ExternalLinks extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        getLinkIcon(asset: Assets.linkedinIcon, url: 'https://www.linkedin.com/in/krishnakumarcn'),
+        getLinkIcon(
+            asset: Assets.linkedinIcon,
+            url: 'https://www.linkedin.com/in/krishnakumarcn'),
         SizedBox(width: 12),
         getLinkIcon(
-            asset: Assets.stackoverflowIcon, url: "https://stackoverflow.com/users/5546443/krishnakumarcn?tab=profile"),
+            asset: Assets.stackoverflowIcon,
+            url:
+                "https://stackoverflow.com/users/5546443/krishnakumarcn?tab=profile"),
         SizedBox(width: 12),
-        getLinkIcon(asset: Assets.githubIcon, url: "https://github.com/krishnakumarcn/"),
+        getLinkIcon(
+            asset: Assets.githubIcon,
+            url: "https://github.com/krishnakumarcn/"),
         SizedBox(width: 12),
-        getLinkIcon(asset: Assets.facebookIcon, url: "https://www.facebook.com/krishnakumarcn/"),
+        getLinkIcon(
+            asset: Assets.facebookIcon,
+            url: "https://www.facebook.com/krishnakumarcn/"),
         SizedBox(width: 12),
-        getLinkIcon(asset: Assets.instagramIcon, url: "https://www.instagram.com/krishnakumar_cn/"),
+        getLinkIcon(
+            asset: Assets.instagramIcon,
+            url: "https://www.instagram.com/krishnakumar.cn/"),
         SizedBox(width: 12),
-        getLinkIcon(asset: Assets.mediumIcon, url: "https://krishnakumarcn.medium.com/"),
+        getLinkIcon(
+            asset: Assets.mediumIcon,
+            url: "https://krishnakumarcn.medium.com/"),
         SizedBox(width: 12),
-        getLinkIcon(asset: Assets.youtubeIcon, url: "https://youtu.be/RGOFQ9nnhL4"),
+        getLinkIcon(
+            asset: Assets.youtubeIcon, url: "https://youtu.be/RGOFQ9nnhL4"),
         SizedBox(width: 12),
       ],
     );
