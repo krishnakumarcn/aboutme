@@ -33,7 +33,7 @@ class OverviewMobile extends StatelessWidget {
                 ),
                 SizedBox(height: 12),
                 Text(
-                    '''Engineer with a strong passion for computers and application development. My areas of interest include mobile & web-based application development and cloud engineering including the strategy and execution of product development activities. As a keen developer, I always thrive to keep myself updated on the latest trends and adaptations introduced in my fields of interest''',
+                    '''Crafting digital magic at Delivery Hero, the parent organization behind popular brands like Foodpanda and Zomato, I'm a product-first Engineer and a Flutter evangelist. When I'm not busy engineering, you can find me geeking out over Game of Thrones and getting lost in captivating fantasy books. Inspired by the thought-provoking question,  "Who has a better story than Bran the Broken?", I set out on the adventure of creating compelling stories through my occasional writing and travel videos. Well, they may not be perfect or exceptional, but they hold immense personal value to me.''',
                     style: Theme.of(context)
                         .textTheme
                         .bodyText2
@@ -71,7 +71,7 @@ class OverviewDesktop extends StatelessWidget {
                 ),
                 SizedBox(height: 12),
                 Text(
-                    '''Engineer with a strong passion for computers and application development. My areas of interest include mobile & web-based application development and cloud engineering including the strategy and execution of product development activities. As a keen developer, I always thrive to keep myself updated on the latest trends and adaptations introduced in my fields of interest''',
+                    '''Crafting digital magic at Delivery Hero, the parent organization behind popular brands like Foodpanda and Zomato, I'm a product-first Engineer and a Flutter evangelist. When I'm not busy engineering, you can find me geeking out over Game of Thrones and getting lost in captivating fantasy books. Inspired by the thought-provoking question,  "Who has a better story than Bran the Broken?", I set out on the adventure of creating compelling stories through my occasional writing and travel videos. Well, they may not be perfect or exceptional, but they hold immense personal value to me.''',
                     style: Theme.of(context)
                         .textTheme
                         .bodyText2

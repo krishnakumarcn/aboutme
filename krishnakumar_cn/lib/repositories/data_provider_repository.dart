@@ -12,7 +12,7 @@ class DataRepository {
         description:
             '''Delivery Hero is a European multinational online food-delivery service based in Berlin, Germany. The company operates in 40+ countries internationally in Europe, Asia, Latin America and the Middle East and partners with 500,000+ restaurant''',
         fullDescription:
-            '''Currently working as a Flutter Engineer in Delivery Hero's D-Merchant team. D-Merchant is the mobile application that allows restaurants to talk to their existing suppliers, place and track orders with these suppliers and discover new suppliers.''',
+            '''Building D-Merchants at Delivery Hero: on a mission to be the world's preferred supply chain solution for restaurants and suppliers''',
       ),
       WorkExperience(
         duration: '2019-2021',
